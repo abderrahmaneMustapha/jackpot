@@ -95,4 +95,25 @@ const GameContainer = styled.div`
   }
 `;
 
-export default GameContainer
+const Ribbon = styled.div`
+  position: relative;
+  width: fit-content;
+
+  &::before {
+    content: '${props => props.text}';
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    background-color: ${props => props.color};
+    position: absolute;
+    top: -140px;
+    left: 50px;
+    bottom: auto;
+    transform: rotate(-0deg);
+    z-index: 1;
+  }
+`;
+
+export { GameContainer, Ribbon }

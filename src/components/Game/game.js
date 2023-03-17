@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useGetJackpot } from '../../hooks/jackpot.hook';
-import GameContainer from './game.style';
+import { GameContainer, Ribbon } from './game.style';
 
 const Game = ({ game, jackpot }) => {
   const { data, loading, getData} = useGetJackpot();
-
+  const hasNewCategory = game.categories.includes('new');
+  const hasTopCategory = game.categories.includes('top');
   useEffect(() => {
     let interval = undefined
     if (jackpot) {
@@ -25,6 +26,9 @@ const Game = ({ game, jackpot }) => {
     <GameContainer>
       <img src={game.image} alt={game.name} />
       <div className="game-details">
+      {hasNewCategory ? (
+        <Ribbon text="new" color="red"/>
+      ) : (hasTopCategory) && ( <Ribbon text="top" color="green"/>)}
         <h3>{game.name}</h3>
         {(data && !loading) ?  (
           <span className="game-jackpot">Jackpot: £{data.amount}</span>
