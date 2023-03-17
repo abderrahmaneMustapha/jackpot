@@ -6,7 +6,7 @@ import Navigation from "../../components/Navigation"
 import { navigationList } from "../../config"
 
 import useGetGames from "../../hooks/game.hook"
-import useGetJackpots from "../../hooks/jackpot.hook"
+import { useGetJackpots }  from "../../hooks/jackpot.hook"
 
 import { ErrorContainer, ErrorMessage, LoadingContainer, LoadingMessage } from "../../style"
 import { HomeContentContainer } from "./home.style"
@@ -19,7 +19,7 @@ const Home = () => {
 
   const onNavLinkChange = (value) => {
     setActiveNavLink(value)
-    
+
     if(value.key === "jackpots") {
       filterGames(undefined, jackpotsData)
       return
@@ -32,7 +32,7 @@ const Home = () => {
     <div>
       <Navigation navLinks={navigationList} activeNavLink={activeNavLink} onNavLinkChange={onNavLinkChange} />
       <HomeContentContainer>
-        <HomeContent gamesData={gamesData} gamesLoading={gamesLoading} gamesError={gamesError} jackpotsData={jackpotsData} jackpotsError={jackpotsError} jackpotsLoading={jackpotsLoading} />
+        <HomeContent gamesData={gamesData}  jackpotsData={jackpotsData} gamesLoading={gamesLoading} gamesError={gamesError} jackpotsError={jackpotsError} jackpotsLoading={jackpotsLoading} />
       </HomeContentContainer>
     </div>
   )

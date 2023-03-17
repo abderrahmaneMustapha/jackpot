@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { backendUrl } from "../config"
 
-const useGetJackpotes = () => {
+const useGetJackpots = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,4 +25,27 @@ const useGetJackpotes = () => {
   return {data, loading, error};
 };
 
-export default useGetJackpotes;
+const useGetJackpot = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const getData = (game) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${backendUrl}/jackpots.php`);
+        const json = await response.json();
+        setData(json.find(j => j.game === game) || undefined);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }
+
+  return {data, loading, getData};
+};
+
+
+export { useGetJackpots, useGetJackpot };

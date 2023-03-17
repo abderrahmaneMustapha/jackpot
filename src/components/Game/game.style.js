@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const GameWrapper = styled.div`
+const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,4 +95,4 @@ const GameWrapper = styled.div`
   }
 `;
 
-export default GameWrapper
+export default GameContainer
