@@ -93,6 +93,13 @@ const GameContainer = styled.div`
   &:hover .game-hover-state {
     display: flex;
   }
+
+  @media only screen and (max-width: 768px) {
+    &:hover .game-hover-state {
+      display: none;
+    }
+
+  }
 `;
 
 const Ribbon = styled.div`
