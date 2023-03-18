@@ -18,7 +18,6 @@ const useGetGames = (category, jackpots) => {
     try {
       const response = await fetch(`${backendUrl}/games.php`);
       const json = await response.json();
-     
       setLoading(false);
       return json;
     } catch (error) {
@@ -30,7 +29,6 @@ const useGetGames = (category, jackpots) => {
   const filterGames  = async (_category, _jackpots) => {
     let _data =  await fetchData();
     let filtered = []
-
     // When the category is "other"
     if(_category === "other") {
       filtered = _data.filter(game => othersList.some(o => game.categories.includes(o)))

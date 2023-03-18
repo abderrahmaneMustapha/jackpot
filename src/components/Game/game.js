@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useGetJackpot } from '../../hooks/jackpot.hook';
 import { GameContainer, Ribbon } from './game.style';
 
-const Game = ({ game, jackpot }) => {
+const Game = ({ game, jackpot, refreshTime = 10000 }) => {
   const { data, loading, getData} = useGetJackpot();
   const hasNewCategory = game.categories.includes('new');
   const hasTopCategory = game.categories.includes('top');
@@ -12,7 +12,7 @@ const Game = ({ game, jackpot }) => {
       // jackpot data is fetched from the server each 10 seconds
       interval = setInterval(() => {
         getData(game.id)
-      }, 10000);
+      }, refreshTime);
     }
 
     return () => {
@@ -20,7 +20,7 @@ const Game = ({ game, jackpot }) => {
         clearInterval(interval);
       }
     }
-  }, [data, game, getData, jackpot]);
+  }, [data, game, getData, jackpot, refreshTime]);
 
   return (
     <GameContainer>
