@@ -28,6 +28,7 @@ const useGetGames = (category, jackpots) => {
 
   const filterGames  = async (_category, _jackpots) => {
     let _data =  await fetchData();
+    console.log(_data)
     let filtered = []
     // When the category is "other"
     if(_category === "other") {
