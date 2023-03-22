@@ -9,7 +9,7 @@ import useGetGames from "../../hooks/game.hook"
 import { useGetJackpots }  from "../../hooks/jackpot.hook"
 
 import { ErrorContainer, ErrorMessage, LoadingContainer, LoadingMessage } from "../../style"
-import { HomeContentContainer } from "./home.style"
+import { HomeContentContainer , HomeContainer} from "./home.style"
 
 const Home = () => {
   const { data: gamesData, loading: gamesLoading, error: gamesError, filterGames } = useGetGames(navigationList[0].key, undefined)
@@ -29,12 +29,15 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <HomeContainer>
       <Navigation navLinks={navigationList} activeNavLink={activeNavLink} onNavLinkChange={onNavLinkChange} />
+
+      
       <HomeContentContainer>
         <HomeContent gamesData={gamesData}  jackpotsData={jackpotsData} gamesLoading={gamesLoading} gamesError={gamesError} jackpotsError={jackpotsError} jackpotsLoading={jackpotsLoading} />
       </HomeContentContainer>
-    </div>
+      
+    </HomeContainer>
   )
 }
 
